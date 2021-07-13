@@ -2,6 +2,7 @@
  * Библиотека для помощи в решении задач с HackerRank. Используется методом
  * копипаста в начало файла исходного кода. Черновик.
  */
+
 #include <string>
 #include <regex>
 #include <sstream>
@@ -13,11 +14,11 @@
 
 using namespace std;
 
-typedef vector<string> StringVector;
+typedef vector<string>  StringVector;
+typedef vector<int>     IntVector;
 
-// разбить строку регулярным выражением на токены
-StringVector parseLine(const string &inputline, const char *pattern = "\\s+") {
-    std::regex rgx(pattern);
+StringVector parseLine(const string &inputline) {
+    std::regex rgx("\\s+");
     //std::regex rgx("(\\d+)");
     std::sregex_token_iterator iter(inputline.begin(), inputline.end(),
         rgx, -1);
@@ -28,6 +29,14 @@ StringVector parseLine(const string &inputline, const char *pattern = "\\s+") {
         retArray.push_back(*iter);
     
     return retArray;
+}
+
+IntVector fromStringVector(const StringVector &arr) {
+    IntVector retArr;
+    for(int i = 0; i < arr.size(); ++i) {
+        retArr.push_back(stoi(arr[i]));
+    }
+    return retArr;
 }
 
 void printIntInputLine(const StringVector &arr) {
@@ -43,6 +52,20 @@ void printIntInputLine(const StringVector &arr) {
     cout << "end of printIntInputLine()" << endl;
 }
 
+template <class T> void printVector(const vector<T> &arr) {
+    //cout << "printVector" << endl;
+    // cout << "size = " << arr.size() << endl;
+    for (int i = 0; i < arr.size(); ++i) {
+        if (i + 1 < arr.size())
+            cout << arr[i] << ", ";
+        else
+            cout << arr[i];
+    }
+    cout << endl;
+    //cout << "end of printVector()" << endl;
+}
+
+
 /*
 int main() {
     int n = 0, q = 0;
@@ -50,39 +73,25 @@ int main() {
     string line;
     StringVector arr;
     
-    // line = "";
     getline(cin, line);        
     arr = parseLine(line);
     printIntInputLine(arr);
+    printVector(fromStringVector(arr));
     
-    // line = "";
     getline(cin, line);        
     arr = parseLine(line);
     printIntInputLine(arr);
+    printVector(fromStringVector(arr));
     
-    // line = "";
     getline(cin, line);        
     arr = parseLine(line);
     printIntInputLine(arr);
+    printVector(fromStringVector(arr));
     
     cout << n << endl << q << endl;
     
-    std::istringstream input;
-    input.str("1\n2\n3\n4\n5\n6\n7\n");
-    int sum = 0;
-    for (std::string line; std::getline(input, line); ) {
-        sum += std::stoi(line);
-    }
-    std::cout << "\nThe sum is: " << sum << "\n\n";
- 
-    // use separator to read parts of the line
-    std::istringstream input2;
-    input2.str("a;b;c;d");
-    for (std::string line; std::getline(input2, line, ';'); ) {
-        std::cout << line << '\n';
-    }
     
+        
     return 0;
 }
 */
-
