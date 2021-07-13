@@ -33,65 +33,76 @@ StringVector parseLine(const string &inputline) {
 
 IntVector fromStringVector(const StringVector &arr) {
     IntVector retArr;
-    for(int i = 0; i < arr.size(); ++i) {
+    for(size_t i = 0; i < arr.size(); ++i) {
         retArr.push_back(stoi(arr[i]));
     }
     return retArr;
 }
 
 void printIntInputLine(const StringVector &arr) {
-    cout << "printIntInputLine()" << endl;
-    cout << "size = " << arr.size() << endl;
-    for (int i = 0; i < arr.size(); ++i) {
+    // cout << "printIntInputLine()" << endl;
+    // cout << "size = " << arr.size() << endl;
+    for (size_t i = 0; i < arr.size(); ++i) {
         if (i + 1 < arr.size())
             cout << arr[i] << ", ";
         else
             cout << arr[i];
     }
     cout << endl;
-    cout << "end of printIntInputLine()" << endl;
+    // cout << "end of printIntInputLine()" << endl;
 }
 
 template <class T> void printVector(const vector<T> &arr) {
-    //cout << "printVector" << endl;
-    // cout << "size = " << arr.size() << endl;
-    for (int i = 0; i < arr.size(); ++i) {
+    // cout << "printVector()";
+    // cout << "size: " << arr.size() << endl;
+    
+    for (size_t i = 0; i < arr.size(); ++i) {
         if (i + 1 < arr.size())
             cout << arr[i] << ", ";
         else
             cout << arr[i];
     }
     cout << endl;
-    //cout << "end of printVector()" << endl;
+    
+    // cout << "end of printVector()";
 }
 
-
-/*
 int main() {
     int n = 0, q = 0;
         
     string line;
-    StringVector arr;
+    vector<IntVector> arr;
+    IntVector tmp;
     
     getline(cin, line);        
-    arr = parseLine(line);
-    printIntInputLine(arr);
-    printVector(fromStringVector(arr));
+    tmp = fromStringVector(parseLine(line));
+    //printIntInputLine(arr);
+    //printVector(tmp);
     
-    getline(cin, line);        
-    arr = parseLine(line);
-    printIntInputLine(arr);
-    printVector(fromStringVector(arr));
+    n = tmp[0];
+    q = tmp[1];
     
-    getline(cin, line);        
-    arr = parseLine(line);
-    printIntInputLine(arr);
-    printVector(fromStringVector(arr));
+    for(int i = 0; i < n; ++i) {
+        getline(cin, line);
+        IntVector vec = fromStringVector(parseLine(line));
+        //int k = vec[0];
+        IntVector t;
+        for(size_t j = 1; j < vec.size(); j++)
+            t.push_back(vec[j]);
+        arr.push_back(t);
+    }
     
-    cout << n << endl << q << endl;
+    //cout << "n: " << n << ", q: " << q << endl;
     
+    for(int k = 0; k < q; ++k) {
+        getline(cin, line);
+        auto vec = fromStringVector(parseLine(line));
+        int i = vec[0], j = vec[1];
+        cout << arr[i][j] << endl;
+    }
     
-        
+    // for(int i = 0; i < arr.size(); i++)
+        // printVector(arr[i]);
+            
     return 0;
 }
-*/
