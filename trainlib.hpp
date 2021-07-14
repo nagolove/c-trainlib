@@ -67,6 +67,7 @@ template <class T> void printVector(const vector<T> &arr) {
     // cout << "end of printVector()";
 }
 
+/*
 int main() {
     int n = 0, q = 0;
         
@@ -106,3 +107,4 @@ int main() {
             
     return 0;
 }
+*/
